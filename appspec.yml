@@ -1,0 +1,6 @@
+version: 0.0
+resources:
+  - your-resource:
+      type: EC2
+      properties:
+        - imageUri: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/owasp12:latest
