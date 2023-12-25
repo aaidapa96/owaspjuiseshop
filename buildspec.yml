@@ -2,10 +2,10 @@ version: 0.2
 phases:
   install:
     commands:
-      - apt-get update
-      - apt-get install -y wget
-      - wget https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.deb
-      - dpkg -i --force-depends trivy_0.18.3_Linux-64bit.deb
+      - sudo apt-get update
+      - sudo apt-get install -y wget
+      - sudo wget https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.deb
+      - sudo dpkg -i --force-depends trivy_0.18.3_Linux-64bit.deb
   build:
     commands:
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
