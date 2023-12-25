@@ -11,5 +11,5 @@ phases:
       - chmod +x docker_login.sh
       - ./docker_login.sh
 
-      - docker pull 373746118720.dkr.ecr.ap-south-1.amazonaws.com/owasp12:latest
-      - trivy --exit-code 1 --severity HIGH,MEDIUM --no-progress 373746118720.dkr.ecr.ap-south-1.amazonaws.com/owasp12:latest
+      - docker pull 373746118720.dkr.ecr.ap-south-1.amazonaws.com/owaspjuiceshoprepo:latest
+      - trivy --exit-code 1 --severity HIGH,MEDIUM --no-progress 373746118720.dkr.ecr.ap-south-1.amazonaws.com/owaspjuiceshoprepo:latest
