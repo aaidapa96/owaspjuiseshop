@@ -2,12 +2,14 @@ version: 0.2
 phases:
   install:
     commands:
-      - sudo apt-get update
-      - sudo apt-get install -y wget
-      - sudo wget https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.deb
-      - sudo dpkg -i --force-depends trivy_0.18.3_Linux-64bit.deb
+      - wget https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.deb
+      - dpkg -i trivy_0.18.3_Linux-64bit.deb
   build:
     commands:
-      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
-      - docker pull 373746118720.dkr.ecr.ap-south-1.amazonaws.com/owasp12:latest:$CODEBUILD_RESOLVED_SOURCE_VERSION
-      - trivy --exit-code 1 --severity HIGH,MEDIUM --no-progress 373746118720.dkr.ecr.ap-south-1.amazonaws.com/owasp12:latest:$CODEBUILD_RESOLVED_SOURCE_VERSION
+      - pip install --upgrade awscli
+      - aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION > docker_login.sh
+      - chmod +x docker_login.sh
+      - ./docker_login.sh
+
+      - docker pull 373746118720.dkr.ecr.ap-south-1.amazonaws.com/owasp12:latest
+      - trivy --exit-code 1 --severity HIGH,MEDIUM --no-progress 373746118720.dkr.ecr.ap-south-1.amazonaws.com/owasp12:latest
