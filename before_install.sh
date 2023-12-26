@@ -1,13 +1,8 @@
-#!/bin/bash
+sudo service codedeploy-agent start
+sudo service docker start
 
-# Your ECR repository URI
-ECR_REPO_URI="373746118720.dkr.ecr.ap-south-1.amazonaws.com/owasp12"
-
-# AWS CLI login to ECR
-pip install --upgrade awscli
-aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION > docker_login.sh
+sudo usermod -aG docker $USER
+sudo aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 373746118720.dkr.ecr.ap-south-1.amazonaws.com/owasp12:latest > docker_login.sh
 chmod +x docker_login.sh
-./docker_login.sh
 
-# Pull the Docker image
 docker pull 373746118720.dkr.ecr.ap-south-1.amazonaws.com/owasp12
