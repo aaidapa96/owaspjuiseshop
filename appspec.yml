@@ -11,8 +11,8 @@ hooks:
   AfterInstall:
     - location: after_install.sh
       timeout: 300
-    - location: zap.sh
-      timeout: 1800
+ #   - location: zap.sh
+  #    timeout: 1800
 
 permissions:
   - object: /home/ec2-user/app
